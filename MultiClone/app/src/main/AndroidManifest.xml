@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:label="MultiClone PoC"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+
+        <activity
+            android:name=".presentation.PocRunnerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Dedicated virtual stub processes (slots 0..4 = up to 5 concurrent virtual instances) -->
+        <activity
+            android:name=".virtualization.StubVirtualActivity"
+            android:exported="false"
+            android:process=":vproc0"
+            android:taskAffinity=":vtask0" />
+
+        <activity
+            android:name=".virtualization.StubVirtualActivity"
+            android:exported="false"
+            android:label="Clone Slot 2"
+            android:process=":vproc1"
+            android:taskAffinity=":vtask1" />
+
+        <activity
+            android:name=".virtualization.StubVirtualActivity"
+            android:exported="false"
+            android:label="Clone Slot 3"
+            android:process=":vproc2"
+            android:taskAffinity=":vtask2" />
+
+        <activity
+            android:name=".virtualization.StubVirtualActivity"
+            android:exported="false"
+            android:label="Clone Slot 4"
+            android:process=":vproc3"
+            android:taskAffinity=":vtask3" />
+
+        <activity
+            android:name=".virtualization.StubVirtualActivity"
+            android:exported="false"
+            android:label="Clone Slot 5"
+            android:process=":vproc4"
+            android:taskAffinity=":vtask4" />
+    </application>
+
+</manifest>
